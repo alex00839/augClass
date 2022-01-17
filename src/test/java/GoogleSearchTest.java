@@ -20,6 +20,7 @@ public class GoogleSearchTest {
     private void setup(){
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
     }
 
     @AfterSuite
@@ -49,16 +50,16 @@ public class GoogleSearchTest {
     }
 
     private void typeQuery(String queryForSearch) {
-        String selector = ".a4bIc > input[role='combobox']";
-        WebElement element = driver.findElement(By.cssSelector(selector));
+        String xpath = "(//input[@name='q'])";
+        WebElement element = driver.findElement(By.xpath(xpath));
         element.sendKeys(queryForSearch);
         element.submit();
 
     }
 
     private void submitQuery() {
-        String selector = ".a4bIc > input[role='combobox']";
-        WebElement element = driver.findElement(By.cssSelector(selector));
+        String xpath = "(//input[@name='q'])";
+        WebElement element = driver.findElement(By.xpath(xpath));
         element.submit();
 
     }
@@ -72,8 +73,8 @@ public class GoogleSearchTest {
     }*/
 
     private void verifyResultsPage() {
-        String resultStatsElementId = "result-stats";
-        WebElement element = driver.findElement(By.id(resultStatsElementId));
+        String resultStatsElementXPath = "(//*[@id='result-stats'])";
+        WebElement element = driver.findElement(By.xpath(resultStatsElementXPath));
         boolean isResultsDisplayed = element.isDisplayed();
         Assert.assertTrue(isResultsDisplayed);
 
