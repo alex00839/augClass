@@ -40,21 +40,21 @@ public class BingSearchTest {
     }
 
     private void verifySearchResult() {
-        String resultsStatsElementSelector = "div#b_tween > .sb_count";
-        WebElement resultIsDisplayed = driver.findElement(By.cssSelector(resultsStatsElementSelector));
+        String resultsStatsElementXpath = "(*[@class='sb_count'])";
+        WebElement resultIsDisplayed = driver.findElement(By.xpath(resultsStatsElementXpath));
         boolean isResultDisplayed = resultIsDisplayed.isDisplayed();
         Assert.assertTrue(isResultDisplayed);
     }
 
     private void submitSearchQuery() {
-        String elementId =  "sb_form_q";
-        WebElement element = driver.findElement(By.id(elementId));
+        String elementXPath =  "(//input[@name='q'])";
+        WebElement element = driver.findElement(By.xpath(elementXPath));
         element.submit();
     }
 
     private void enterSearchQuery(String textToSearch) {
-        String elementId = "sb_form_q";
-        WebElement element = driver.findElement(By.id(elementId));
+        String elementXPath = "(//input[@name='q'])";
+        WebElement element = driver.findElement(By.xpath(elementXPath));
         element.sendKeys(textToSearch);
     }
 
