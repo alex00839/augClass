@@ -22,6 +22,7 @@ public class YahooSearchTest {
     private void setup() {
         driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
     }
 
     @AfterSuite
@@ -40,21 +41,21 @@ public class YahooSearchTest {
     }
 
     private void verifySearchResult() {
-        String elementToFindSelector = "[class=' fz-14 lh-22']";
-        WebElement element = driver.findElement(By.cssSelector(elementToFindSelector));
+        String elementToFindXPath = "(//*[@class='title'])";
+        WebElement element = driver.findElement(By.xpath(elementToFindXPath));
         boolean isSearchResultDisplayed = element.isDisplayed();
         Assert.assertTrue(isSearchResultDisplayed);
     }
 
     private void submitQuery() {
-        String selector = "input#ybar-sbq";
-        WebElement element = driver.findElement(By.cssSelector(selector));
+        String xpath = "(//input[@name='p'])";
+        WebElement element = driver.findElement(By.xpath(xpath));
         element.submit();
     }
 
     private void typeQuery(String searchText) {
-        String selector = "input#ybar-sbq";
-        WebElement element = driver.findElement(By.cssSelector(selector));
+        String xpath = "(//input[@name='p'])";
+        WebElement element = driver.findElement(By.xpath(xpath));
         element.sendKeys(searchText);
     }
 
